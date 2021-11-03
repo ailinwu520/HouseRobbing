@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 /*
  * CS 245 Lab 07
- * @author
+ * @author Ailin
  */
 public class HouseRobbing {
     /*
@@ -150,8 +150,20 @@ public class HouseRobbing {
      * @see Math#max(int, int) this hint is optional to use
      */
     public int rob(TreeNode node) {
-       //TODO Complete this function, delete these two lines before you start
-       throw new UnsupportedOperationException("Not yet implemented");
+        if(node == null)
+            return 0;
+
+        int val = 0;
+
+        if(node.left != null) {
+            val += rob(node.left.left) + rob(node.left.right);
+        }
+
+        if(node.right != null) {
+            val += rob(node.right.left) + rob(node.right.right);
+        }
+
+        return Math.max(val + node.val, rob(node.left) + rob(node.right));
     }
 
     public static void main(String[] args) {
